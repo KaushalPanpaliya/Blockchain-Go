@@ -25,15 +25,3 @@ func (b *Block) SetHash() {
 	b.Hash = hash[:]
 }
 
-func NewBlock(data string, prevBlockHash []byte) *Block {
-	var block = Block{time.Now().Unix(), []byte(data), prevBlockHash, []byte{}} // block stores address of newly created(malloced) block
-	block.SetHash()
-	return &block // new block address returned (pointer to new block)
-}
-
-func (bc *Blockchain) AddBlock(data string) {
-	var prevBlock = bc.blocks[len(bc.blocks)-1] // last block (before inserted of new block)
-	var newBlock = NewBlock(data, prevBlock.Hash)
-	bc.blocks = append(bc.blocks, newBlock)
-}
-
