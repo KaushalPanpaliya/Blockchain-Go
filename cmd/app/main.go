@@ -36,3 +36,12 @@ func (bc *Blockchain) AddBlock(data string) {
 	var newBlock = NewBlock(data, prevBlock.Hash)
 	bc.blocks = append(bc.blocks, newBlock)
 }
+
+func NewGenesisBlock() *Block {
+	return NewBlock("Genesis Block", []byte{}) // creates a Genesis block using malloc
+}
+
+func NewBlockchain() *Blockchain {
+	var blockchain = Blockchain{[]*Block{NewGenesisBlock()}}
+	return &blockchain
+}
